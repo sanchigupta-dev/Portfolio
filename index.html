@@ -1471,6 +1471,45 @@
       font-weight: bold;
     }
 
+    /* CONTACT SECTION */
+#contact {
+  padding: 60px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contact-form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.contact-form textarea {
+  resize: none;
+  height: 120px;
+}
+
+.btn3 {
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
     /* media query */
 
     @media only screen and (min-width: 475px) {
@@ -1753,6 +1792,9 @@
 
       .stat h2 {
         font-size: 2.5rem;
+      }
+      #contact {
+    padding: 40px 16px;
       }
     }
   </style>
@@ -2689,7 +2731,7 @@
       <!-- testimonials sec ends here -->
 
       <!-- sec-6 starts here -->
-      <div id="contact">
+     <!-- <div id="contact">
         <div class="text-1 t-1">
           <h1
             data-aos="fade-zoom-in"
@@ -2718,7 +2760,49 @@
           <input type="text" placeholder="Message" required /></button
         ><br /><br />
         <button type="submit" class="btn3">Send Message &#8599;</button>
-      </div>
+      </div> -->
+      <!-- CONTACT SECTION -->
+<section id="contact">
+  <div class="text-1 t-1">
+    <h1>Let's Work Together!</h1>
+    <p>
+      Have a project in mind? I'd love to help you bring it to life with
+      creativity and precision.
+    </p>
+  </div>
+
+  <form id="contact-form" class="contact-form" novalidate>
+
+    <input
+      type="text"
+      name="title"
+      placeholder="Subject / Title"
+      required
+    />
+
+    <input
+      type="text"
+      name="name"
+      placeholder="Name"
+      required
+    />
+
+    <input
+      type="email"
+      name="email"
+      placeholder="Email"
+      required
+    />
+
+    <textarea
+      name="message"
+      placeholder="Message"
+      required
+    ></textarea>
+
+    <button type="submit" class="btn3">Send Message ↗</button>
+  </form>
+</section>
       <!-- sec-6 ends here -->
       <!-- footer starts here -->
       <footer class="footer">
@@ -2832,6 +2916,8 @@
     </button>
 
     <!-- js -->
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
     <!-- navbar -->
     <script src="js/jquery-3.4.1.min.js"></script>
@@ -2970,6 +3056,52 @@
         animateBars();
       });
     </script>
+
+    <script>
+      (function () {
+  emailjs.init("QxX4Z9xt0IaXtSRscegjO"); // Public Key
+})();
+
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const title = this.title.value.trim();
+  const name = this.name.value.trim();
+  const email = this.email.value.trim();
+  const message = this.message.value.trim();
+
+  // Validation
+  if (!title || !name || !email || !message) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  if (!/^\S+@\S+\.\S+$/.test(email)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  // Send Email
+  emailjs
+    .sendForm(
+      "service_gt7mikl",
+      "template_c7zxbjk",
+      this
+    )
+    .then(
+      () => {
+        alert("Thank you! Your message has been sent successfully 😊");
+        this.reset();
+      },
+      (error) => {
+        alert("Something went wrong. Please try again.");
+        console.error(error);
+      }
+    );
+});
+    </script>
+
+    
 
     <!-- aos -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
