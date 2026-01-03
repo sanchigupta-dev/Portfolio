@@ -1,0 +1,3775 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pandora Box</title>
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <style>
+    @font-face {
+      font-family: r regular;
+      src: url(ASSETS/FONTS/raleway.regular.ttf);
+    }
+    @font-face {
+      font-family: r medium;
+      src: url(ASSETS/FONTS/raleway.medium.ttf);
+    }
+    @font-face {
+      font-family: m regular;
+      src: url(ASSETS/FONTS/Montserrat-Regular.ttf);
+    }
+    @font-face {
+      font-family: m bold;
+      src: url(ASSETS/FONTS/Montserrat-Bold.ttf);
+    }
+    @font-face {
+      font-family: game;
+      src: url(ASSETS/FONTS/GamestationCond.otf);
+    }
+    @font-face {
+      font-family: ts;
+      src: url(ASSETS/FONTS/TrendSansOne.ttf);
+    }
+    @font-face {
+      font-family: os;
+      src: url(ASSETS/FONTS/TT\ Octosquares\ Trial\ Compressed\ Bold.ttf);
+    }
+    @font-face {
+      font-family: ts regular;
+      src: url(ASSETS/FONTS/TT\ Octosquares\ Trial\ Regular.ttf);
+    }
+    @font-face {
+      font-family: ts medium;
+      src: url(ASSETS/FONTS/TT\ Octosquares\ Trial\ Medium.ttf);
+    }
+    @font-face {
+      font-family: ts bold;
+      src: url(ASSETS/FONTS/TT\ Octosquares\ Trial\ ExtraBold.ttf);
+    }
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    #container {
+      width: 100%;
+      height: auto;
+      overflow-x: visible;
+    }
+
+    .btn1:focus {
+      outline: 0.5px white;
+    }
+    .btn2:focus {
+      outline: 0.5px white;
+    }
+
+    /* back-to-top btn */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 20px;
+      height: 48px;
+      width: 48px;
+      background: linear-gradient(
+        135deg,
+        rgba(195, 158, 239, 0.05),
+        rgba(7, 7, 7, 0.2)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      color: var(--white);
+      padding: 8px;
+      border-radius: 50%;
+      text-align: center;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      z-index: 999;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+    .back-to-top span {
+      display: inline-block;
+      line-height: 1;
+    }
+    .back-to-top:focus {
+      outline: none;
+    }
+    .back-to-top:hover {
+      background: linear-gradient(
+        135deg,
+        rgba(176, 117, 249, 0.08),
+        rgba(49, 49, 49, 0.2)
+      );
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    /* pop-up */
+    #welcome-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3000;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #welcome-popup i {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    #welcome-popup div {
+      background: white;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+      color: #12090d;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      width: 300px;
+    }
+    #welcome-popup h2 {
+      font-family: ts;
+      letter-spacing: -0.7px;
+      color: #12090d;
+    }
+    #welcome-popup p {
+      font-family: m regular;
+      color: #12090d;
+      margin-top: 12px;
+    }
+    #welcome-popup button {
+      font-family: m regular;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: transparent;
+      color: #12090d;
+      border: 1px solid #12090d;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #welcome-popup button:hover {
+      background-color: #12090d;
+      color: white;
+      border: none;
+    }
+    #welcome-popup button:focus {
+      outline: none;
+      border: none;
+    }
+
+    /* atc */
+
+    #atc-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 2999;
+      display: none;
+    }
+
+    #atc-popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: white;
+      color: black;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 12px;
+      box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+      display: none;
+      z-index: 1000;
+      animation: slideInTopRight 0.5s ease-out forwards;
+      text-align: center;
+    }
+
+    #atc-popup a {
+      font-family: m regular;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      color: #333;
+    }
+    #atc-popup a:hover {
+      text-decoration: underline;
+    }
+
+    #atc-popup h3 {
+      font-family: ts;
+      letter-spacing: -0.5px;
+      font-size: 16px;
+    }
+
+    @keyframes slideInTopRight {
+      from {
+        transform: translate(10%, -10%);
+        opacity: 0;
+      }
+      to {
+        transform: translate(0, 0);
+        opacity: 1;
+      }
+    }
+
+    #popup-ok-btn {
+      width: 100%;
+      padding: 5px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background-color: transparent;
+      border: 1px solid #12090d;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: ts;
+      font-size: 16px;
+      color: #12090d;
+    }
+
+    #popup-ok-btn:hover {
+      background-color: #12090d;
+      color: white;
+    }
+
+    #popup-ok-btn:focus {
+      outline: none;
+      border: none;
+    }
+
+    .popup-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #12090d;
+    }
+
+    /* sale-bar */
+    .floating-sale-bar {
+      width: 100%;
+      background-image: url(ASSETS/IMAGES/background.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgb(255, 255, 255, 0.9);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      text-align: center;
+    }
+    .sale-content {
+      margin: auto;
+      padding: 12px 16px;
+    }
+    .sale-left {
+      width: 100%;
+      overflow: hidden;
+    }
+    .sale-left h2 {
+      font-size: 12px;
+      font-family: ts;
+      margin: 0;
+      padding: 0;
+    }
+    .text-scroll {
+      width: 100%;
+      display: inline-block;
+      white-space: nowrap;
+      animation: scroll-left 6s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(20%);
+      }
+      100% {
+        transform: translateX(-20%);
+      }
+    }
+
+    /* header */
+    .Navbar {
+      width: 100%;
+      background-image: url(ASSETS/IMAGES/background.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 10px 20px;
+      position: relative;
+      z-index: 1000;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .Top-bar {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .Logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: logoFadeIn 1s ease-out forwards;
+      animation-delay: 0.4s;
+    }
+    .Top-bar a {
+      outline: none;
+      text-decoration: none;
+    }
+    @keyframes logoFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .Logo-text {
+      font-size: 30px;
+      font-family: ts bold;
+      color: white;
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    /* search */
+    .Search-container {
+      position: absolute;
+      display: flex;
+      left: 10px;
+      align-items: center;
+    }
+    .Search-container i {
+      position: absolute;
+      right: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      color: white;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+    }
+    .Search-container ::placeholder {
+      font-family: r regular;
+      letter-spacing: 0.75px;
+      color: rgb(255, 255, 255, 0.6);
+      font-size: 15px;
+    }
+
+    .Search-container i:hover {
+      transform: scale(1.12);
+    }
+    .Search-input {
+      width: 280px;
+      padding: 10px 40px 10px 10px;
+      border: 1px solid white;
+      border-radius: 25px;
+      background-image: url(ASSETS/IMAGES/background.png);
+      outline: none;
+      transition: all 0.3s ease;
+      color: white;
+    }
+    /* icons */
+
+    .Icon-group {
+      position: absolute;
+      right: 10px;
+      display: flex;
+      gap: 20px;
+    }
+    .Icon {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+    }
+    .Icon i {
+      font-size: 30px;
+      transform: rotateX(0) rotateY(0);
+      transition: transform 0.4s ease;
+      color: white;
+    }
+    .Icon:hover i {
+      transform: scale(1.2);
+      color: white;
+      text-shadow: 1px 1px 2px rgba(73, 73, 73, 0.2);
+    }
+    .Icon-text {
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      white-space: nowrap;
+      font-size: 14px;
+      color: white;
+      font-family: r medium;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .Icon:hover .Icon-text {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    /* nav */
+    .Nav-links {
+      text-align: center;
+      position: relative;
+      padding-top: 20px;
+      padding-bottom: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .Nav-links ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+    .Nav-links a {
+      position: relative;
+      text-decoration: none;
+      color: white;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      padding-bottom: 4px;
+      font-family: m regular;
+      font-size: 15px;
+      letter-spacing: 0.75px;
+    }
+    .Nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 1.5px;
+      background: white;
+      left: 50%;
+      bottom: 0;
+      transition: all 0.3s ease;
+    }
+    .Nav-links a:hover::after {
+      width: 100%;
+      left: 0;
+    }
+    .Nav-links a.default-active::after {
+      width: 100%;
+      left: 0;
+    }
+    .Nav-links:hover a.default-active::after {
+      width: 0;
+      left: 50%;
+    }
+    /* hamburger */
+    .Hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 30px;
+    }
+    .Hamburger:focus {
+      color: white;
+    }
+    .Mobile-menu {
+      display: none;
+      flex-direction: column;
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    /* sec-1 */
+
+    .hero-section {
+      background-image: url(ASSETS/IMAGES/sec\ 1-15.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      height: 600px;
+      width: 100%;
+      overflow: hidden;
+      transition: background-image 0.6s ease-in-out;
+    }
+
+    .hero-overlay {
+      background: rgb(18, 9, 13, 0.5);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 20px;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #hero {
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      transition: background-image 0.6s ease-in-out !important;
+      position: relative;
+    }
+
+    .hero-content {
+      margin-top: -100px;
+    }
+
+    .hero-content h1 {
+      font-size: 24px;
+      color: white;
+      font-family: ts;
+      font-weight: bold;
+      letter-spacing: -0.7px;
+      margin-bottom: 20px;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .hero-content p {
+      color: white;
+      font-size: 16px;
+      font-family: m regular;
+      letter-spacing: 0.5px;
+      line-height: 22px;
+      margin-bottom: 26px;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .btn1 {
+      background: transparent;
+      color: white;
+      font-family: r medium;
+      font-weight: bolder;
+      letter-spacing: 0.1px;
+      cursor: pointer;
+      padding: 10px 40px;
+      font-size: 0.9rem;
+      letter-spacing: 1.5px;
+      border-radius: 8px;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      border: 0.7px solid white;
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+      outline: none;
+    }
+    .btn1::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 12px;
+      filter: blur(3px);
+      z-index: -1;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .btn1:hover {
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+      background-color: white;
+      color: #12090d;
+    }
+
+    .hero-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: -160px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-switcher img {
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1.2px solid rgb(255, 255, 255, 0.15);
+      cursor: pointer;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    .hero-switcher img:hover {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    .hero-switcher .active {
+      border-color: rgb(255, 255, 255, 0.8);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    .btn2 {
+      background: linear-gradient(45deg, #a64bf4, #b700ff);
+      color: white;
+      font-family: r medium;
+      font-weight: bolder;
+      letter-spacing: 0.1px;
+      cursor: pointer;
+      padding: 10px 40px;
+      border: none;
+      font-size: 1rem;
+      letter-spacing: 1.5px;
+      border-radius: 8px;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+      margin-left: 8px;
+    }
+    .btn2::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 12px;
+      z-index: -1;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .btn2:hover {
+      transform: scale(1.05);
+      background: linear-gradient(45deg, #a200e2, #a846ff);
+    }
+
+    .span-1 {
+      background: linear-gradient(45deg, #a64bf4 20%, #dcd7e4 100%);
+      text-shadow: 0 0 8px rgb(255, 255, 255, 0.25);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: bold;
+      position: relative;
+    }
+
+    /* sec-2 */
+    #sec-2 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-image: url(ASSETS/IMAGES/background.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      padding: 100px;
+      overflow: hidden;
+    }
+    #text-2 h2 {
+      color: white;
+      font-family: ts;
+      letter-spacing: -0.7px;
+      font-size: 38px;
+      font-weight: bold;
+    }
+    #text-2 p {
+      color: white;
+      font-family: m regular;
+      font-size: 12px;
+      line-height: 22px;
+      letter-spacing: 0.5px;
+    }
+    .img-wrapper {
+      position: relative;
+      width: fit-content;
+      margin: auto;
+    }
+    .main-img {
+      width: 260px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 40px;
+      border: 2px solid rgb(255, 255, 255, 0.7);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+      position: relative;
+    }
+    .side-img {
+      position: absolute;
+      width: 140px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 2px solid rgb(255, 255, 255, 0.5);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+      top: 50%;
+    }
+    .left-img {
+      left: -100px;
+    }
+    .right-img {
+      right: -100px;
+      top: -10%;
+    }
+
+    #sec-2 img:hover {
+      transform: translateY(-10px) scale(1.04);
+      animation-play-state: paused;
+      cursor: pointer;
+    }
+    @keyframes float-img {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+    #sec-2 h4 {
+      font-family: ts;
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.4;
+      padding-bottom: 5px;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+
+    /* sec-3 */
+    .product-categories {
+      padding: 100px 5%;
+      background-image: url(ASSETS/IMAGES/background.png);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      text-align: center;
+    }
+    .section-heading h2 {
+      color: white;
+      font-family: ts;
+      letter-spacing: -0.7px;
+      font-size: 34px;
+      font-weight: bold;
+    }
+    .section-heading p {
+      color: white;
+      font-family: m regular;
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: 0.75px;
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-auto-flow: dense;
+      gap: 20px;
+      justify-content: center;
+    }
+    .category-card {
+      background: linear-gradient(
+        135deg,
+        rgba(195, 158, 239, 0.05),
+        rgba(7, 7, 7, 0.2)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: background-position 1.5s ease, transform 0.4s ease;
+      box-shadow: 0 0 4px rgb(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .category-card:hover {
+      transform: scale(1.04);
+      background-position: 100% 0 translateY(-5px);
+      background: linear-gradient(
+        135deg,
+        rgba(7, 7, 7, 0.2),
+        rgba(195, 158, 239, 0.05)
+      );
+      background-size: 400% 400%;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 4px rgb(255, 255, 255, 0.3);
+      cursor: pointer;
+    }
+    .category-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+    .category-card h3 {
+      margin-top: 12px;
+      font-size: 1.4rem;
+      color: white;
+      font-family: ts;
+      letter-spacing: -0.4px;
+      font-weight: bold;
+    }
+    .product-categories h4 {
+      font-family: ts;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      padding-bottom: 5px;
+      letter-spacing: 1px;
+      font-size: 16px;
+      font-weight: lighter;
+    }
+    .category-card p {
+      color: white;
+      font-family: m regular;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+    .i-w {
+      position: relative;
+      width: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    .i-w img {
+      width: 100%;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(18, 9, 13, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+    }
+    .shop-btn {
+      font-family: ts;
+      letter-spacing: -0.7px;
+      color: white;
+      text-decoration: none;
+      background: transparent;
+      border: 1px solid white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .shop-btn:hover {
+      transform: scale(1.02);
+    }
+    .i-w:hover .overlay {
+      opacity: 1;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+    }
+    .i-w:hover img {
+      transform: scale(1.05);
+    }
+
+    /* video*/
+    .video-section {
+      padding: 80px 80px;
+      text-align: center;
+      background-image: url(ASSETS/IMAGES/video\ sec\ bg.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      width: 100%;
+      color: white;
+    }
+
+    .video-text h2 {
+      color: white;
+      font-family: ts;
+      letter-spacing: -0.7px;
+      font-size: 34px;
+      font-weight: bold;
+    }
+
+    .video-text p {
+      color: white;
+      font-family: m regular;
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: 0.75px;
+    }
+
+    .video-container {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .video-wrapper {
+      flex: 1 1 40%;
+      min-width: 200px;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      height: auto;
+      max-width: 600px;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 5px rgb(255, 255, 255, 0.3);
+    }
+
+    /* products */
+
+    .tab-products {
+      margin-top: -10px;
+      padding: 60px 8%;
+      background-image: url(ASSETS/IMAGES/background.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      text-align: center;
+    }
+    /* stars */
+    .star-rating {
+      font-size: 18px;
+      margin-top: 10px;
+      margin-bottom: -10px;
+      color: white;
+    }
+    .tab-products h5 {
+      font-size: 20px;
+      font-family: m bold;
+      letter-spacing: 1.5px;
+      color: white;
+    }
+
+    /* wishlist tab */
+    .i-w {
+      position: relative;
+    }
+
+    .Wishlist-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 6;
+      background: linear-gradient(
+        135deg,
+        rgba(203, 160, 255, 0.08),
+        rgba(7, 7, 7, 0.4)
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      border: 1px solid;
+      border-color: rgb(255, 255, 255, 0.8);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+      transition: transform 0.2s ease;
+      width: 36px;
+      height: 36px;
+    }
+
+    .Wishlist-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .Wishlist-btn i {
+      font-size: 18px;
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    .Wishlist-btn.active i {
+      color: white;
+      content: "\f004";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      transform: scale(1.1);
+    }
+
+    /* contact */
+    #contact {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      text-align: center;
+      flex-wrap: wrap;
+      overflow: hidden;
+      padding: 50px;
+      background-image: url(ASSETS/IMAGES/background.png);
+      background-size: cover;
+      color: white;
+      border-bottom: 0.2px solid rgba(255, 255, 255, 0.01);
+    }
+    .name {
+      float: left;
+      padding: 15px 180px 15px 10px;
+      margin-bottom: 20px;
+      background: linear-gradient(
+        135deg,
+        rgba(195, 158, 239, 0.05),
+        rgba(7, 7, 7, 0.2)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: background-position 1.5s ease, transform 0.4s ease;
+      color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+    }
+    .name:hover {
+      background-position: 100% 0;
+      background: linear-gradient(
+        135deg,
+        rgba(7, 7, 7, 0.2),
+        rgba(195, 158, 239, 0.05)
+      );
+      background-size: 400% 400%;
+      transform: translateY(-2px);
+      border: 1.35px solid rgba(255, 255, 255, 0.19);
+      box-shadow: 0 0 2px rgba(50, 50, 50, 0.2);
+      cursor: pointer;
+    }
+    .name input {
+      outline: none;
+      border: none;
+      background: transparent;
+      color: white;
+    }
+    .name input::placeholder {
+      color: rgb(255, 255, 255, 0.7);
+    }
+    .email {
+      float: left;
+      padding: 15px 180px 15px 10px;
+      background: linear-gradient(
+        135deg,
+        rgba(195, 158, 239, 0.05),
+        rgba(7, 7, 7, 0.2)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: background-position 1.5s ease, transform 0.4s ease;
+      color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      color: white;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+      margin-bottom: 20px;
+    }
+    .email:hover {
+      background-position: 100% 0;
+      background: linear-gradient(
+        135deg,
+        rgba(7, 7, 7, 0.2),
+        rgba(195, 158, 239, 0.05)
+      );
+      background-size: 400% 400%;
+      transform: translateY(-2px);
+      border: 1.35px solid rgba(255, 255, 255, 0.19);
+      box-shadow: 0 0 2px rgba(50, 50, 50, 0.2);
+      cursor: pointer;
+    }
+    .email input {
+      outline: none;
+      border: none;
+      background: transparent;
+      color: white;
+    }
+    .email input::placeholder {
+      color: rgb(255, 255, 255, 0.7);
+    }
+    .ph {
+      padding: 15px 180px 15px 10px;
+      background: transparent;
+      background: linear-gradient(
+        135deg,
+        rgba(195, 158, 239, 0.05),
+        rgba(7, 7, 7, 0.2)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: background-position 1.5s ease, transform 0.4s ease;
+      color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      color: white;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+      margin-bottom: 20px;
+    }
+    .ph:hover {
+      background-position: 100% 0;
+      background: linear-gradient(
+        135deg,
+        rgba(7, 7, 7, 0.2),
+        rgba(195, 158, 239, 0.05)
+      );
+      background-size: 400% 400%;
+      transform: translateY(-2px);
+      border: 1.35px solid rgba(255, 255, 255, 0.19);
+      box-shadow: 0 0 2px rgba(50, 50, 50, 0.2);
+      cursor: pointer;
+    }
+    .ph input {
+      outline: none;
+      border: none;
+      background: transparent;
+      color: white;
+    }
+    .ph input::placeholder {
+      color: rgb(255, 255, 255, 0.7);
+    }
+    .comment {
+      padding: 15px 180px 100px 10px;
+      background: transparent;
+      background: linear-gradient(
+        135deg,
+        rgba(195, 158, 239, 0.05),
+        rgba(7, 7, 7, 0.2)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: background-position 1.5s ease, transform 0.4s ease;
+      color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      color: white;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+    }
+    .comment:hover {
+      background-position: 100% 0;
+      background: linear-gradient(
+        135deg,
+        rgba(7, 7, 7, 0.2),
+        rgba(195, 158, 239, 0.05)
+      );
+      background-size: 400% 400%;
+      transform: translateY(-2px);
+      border: 1.35px solid rgba(255, 255, 255, 0.19);
+      box-shadow: 0 0 2px rgba(50, 50, 50, 0.2);
+      cursor: pointer;
+    }
+    .comment input {
+      outline: none;
+      border: none;
+      background: transparent;
+      color: white;
+    }
+    .comment input::placeholder {
+      color: rgb(255, 255, 255, 0.7);
+    }
+    .btn3 {
+      background: transparent;
+      border: 1px solid rgb(255, 255, 255, 0.5);
+      outline: none;
+      box-shadow: none;
+      margin-bottom: 40px;
+    }
+    .btn3::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 12px;
+      border: 0.02px solid rgb(255, 255, 255, 0.2);
+      filter: blur(4px);
+      z-index: -1;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .contact-info {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .ci {
+      width: 200px;
+      height: 80px;
+      padding: 15px 20px 15px 20px;
+      background: transparent;
+      background: linear-gradient(
+        135deg,
+        rgba(195, 158, 239, 0.05),
+        rgba(7, 7, 7, 0.2)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: background-position 1.5s ease, transform 0.4s ease;
+      color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      color: white;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+    }
+    /* footer */
+    .fi-brands-whatsapp {
+      font-size: 20px;
+    }
+    .fi-brands-twitter {
+      font-size: 20px;
+    }
+    .fi-brands-facebook {
+      font-size: 20px;
+    }
+    .fi-brands-instagram {
+      font-size: 20px;
+    }
+    .footer {
+      width: 100%;
+      height: auto;
+      background-image: url(ASSETS/IMAGES/background.png);
+      background-size: cover;
+      padding: 50px;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .footer ul {
+      list-style-type: none;
+    }
+    .footer-col {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .footer-col h4 {
+      font-family: ts;
+      font-weight: 600;
+      font-size: 20px;
+      color: white;
+      margin-bottom: 30px;
+      letter-spacing: -0.7px;
+      position: relative;
+    }
+    .footer li {
+      line-height: 25px;
+    }
+    .footer a {
+      text-decoration: none;
+      color: white;
+      font-family: m regular;
+    }
+    .footer-col h4::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      background: white;
+      height: 2px;
+      box-sizing: border-box;
+      width: 50px;
+    }
+    .footer-col ul li:not(:last-child) {
+      margin-bottom: 10px;
+    }
+    .footer-col ul li a {
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    .footer-col ul li a:hover {
+      color: white;
+      padding-left: 8px;
+    }
+    .footer-col .social-links a {
+      display: inline-block;
+      height: 40px;
+      width: 40px;
+      margin-bottom: 10px;
+      background: linear-gradient(
+        135deg,
+        rgba(195, 158, 239, 0.05),
+        rgba(7, 7, 7, 0.2)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      text-align: center;
+      line-height: 45px;
+      border-radius: 50%;
+      transition: all 0.5s ease;
+    }
+    .footer-col .social-links a:hover {
+      background-position: 100% 0;
+      background: linear-gradient(
+        135deg,
+        rgba(7, 7, 7, 0.2),
+        rgba(195, 158, 239, 0.05)
+      );
+      background-size: 400% 400%;
+      transform: translateY(-4px);
+      border: 1.35px solid rgba(255, 255, 255, 0.19);
+      box-shadow: 0 0 2px rgba(50, 50, 50, 0.2);
+      cursor: pointer;
+    }
+    #p-footer {
+      font-family: m regular;
+      font-size: 13px;
+      color: white;
+      background-image: url(ASSETS/IMAGES/background.png);
+      background-size: cover;
+      letter-spacing: 0.7px;
+      text-align: center;
+      border-top: 1px solid rgb(255, 255, 255, 0.2);
+      padding: 15px 0;
+    }
+
+    /* featured sec */
+
+    .featured {
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 30px;
+      margin-top: -20px;
+    }
+    .featured-sec {
+      overflow: hidden;
+      position: relative;
+    }
+    .featured-track {
+      display: flex;
+      gap: 1rem;
+      width: fit-content;
+      animation: scroll-left 8s linear infinite;
+    }
+    .featured-sec:hover .featured-track {
+      animation-play-state: paused;
+    }
+    .featured-track img {
+      width: 150px;
+      object-fit: contain;
+      flex-shrink: 0;
+      opacity: 0.9;
+      filter: grayscale(100%);
+      transition: all 0.3s ease-in-out;
+      border-radius: 2px;
+    }
+    .featured-track img:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+      cursor: pointer;
+      transform: scale(1.08);
+    }
+    .featured-sec::before {
+      left: 0;
+      background: linear-gradient(to right, #fff, transparent);
+    }
+    .featured-sec::after {
+      right: 0;
+      background: linear-gradient(to left, #fff, transparent);
+    }
+
+    /* blogs */
+    .blog-sec {
+      text-align: center;
+      overflow: hidden;
+      padding: 100px 60px;
+      background-image: url(ASSETS/IMAGES/background.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      grid-auto-flow: dense;
+    }
+    .blog-card {
+      perspective: 1000px;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .blog-card:hover .card-inner {
+      cursor: pointer;
+      transform: rotateY(180deg);
+    }
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+      color: white;
+    }
+    .card-front {
+      background-color: transparent;
+      border: 2px solid rgb(255, 255, 255, 0.5);
+      box-shadow: 0px 0px 5px rgb(255, 255, 255, 0.5);
+    }
+    .card-front img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 44%;
+    }
+    .img-title {
+      position: relative;
+      color: white;
+      font-family: m bold;
+      padding: 0.4rem 0.8rem;
+      font-size: 1.25rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      z-index: 1;
+      font-weight: 500;
+    }
+    .card-back {
+      color: white;
+      background-color: transparent;
+      border: 2px solid rgb(255, 255, 255, 0.5);
+      box-shadow: 0px 0px 5px rgb(255, 255, 255, 0.5);
+      transform: rotateY(180deg);
+      font-size: 1.25rem;
+      line-height: 1.4;
+      font-family: r medium;
+      letter-spacing: 0.15px;
+    }
+
+    /* gallery */
+    .gallery-section {
+      padding: 100px 80px;
+      text-align: center;
+      background-image: url(ASSETS/IMAGES/gallery\ sec\ 1.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      width: 100%;
+      color: white;
+      margin-top: -5px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 10px;
+      border: 1px solid rgb(255, 255, 255, 0.5);
+      box-shadow: 0px 0px 4px rgb(255, 255, 255, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+      filter: brightness(0.8);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(5, 5, 5, 0.7);
+      color: white;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      background-color: rgba(0, 0, 0, 0.85);
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      animation: zoomIn 0.3s ease;
+    }
+
+    .lightbox-content {
+      text-align: center;
+      color: white;
+    }
+
+    .lightbox-text {
+      margin-top: 10px;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .lightbox h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      font-family: ts;
+    }
+
+    .lightbox p {
+      font-size: 14px;
+      color: white;
+      font-family: m regular;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 32px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* popup */
+
+    .Popup-box button:focus {
+      outline: none;
+    }
+    .Popup-box input:focus {
+      outline: none;
+    }
+    .Popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .Popup-box {
+      position: fixed;
+      z-index: 1000;
+      background-color: #fff;
+      padding: 25px 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      display: none;
+      opacity: 0;
+      transform-origin: all 0.5s ease;
+      text-align: center;
+    }
+    .Popup-box h2 {
+      font-family: m regular;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+      font-size: 30px;
+    }
+    .Login-popup {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 350px;
+    }
+    .Login-popup.active {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .Login-popup a {
+      color: #12090d;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .Login-popup a:hover {
+      color: #12090d;
+      text-decoration: underline;
+    }
+    .Login-popup p {
+      font-family: m regular;
+      letter-spacing: 0.75px;
+      font-size: 15px;
+      color: #333;
+    }
+    .Icon {
+      position: relative;
+    }
+    .bottom-popup {
+      position: absolute;
+      top: 50px;
+      right: 0px;
+      transform: translateX(0);
+      width: 350px;
+    }
+    .bottom-popup h4 {
+      font-family: r medium;
+      letter-spacing: 0.5px;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .bottom-popup.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .bottom-popup p {
+      font-family: m regular;
+      letter-spacing: 0.75px;
+      font-size: 15px;
+      color: #333;
+    }
+    .Popup-box input {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid rgb(18, 9, 13, 0.5);
+      border-radius: 6px;
+      font-family: r medium;
+      letter-spacing: 0.8px;
+      font-weight: 8px;
+    }
+    .Popup-box input:hover {
+      border: 1.2px solid rgb(18, 9, 13, 0.7);
+    }
+    .Main-btn {
+      width: 100%;
+      background-color: #12090d;
+      color: white;
+      padding: 10px;
+      margin-top: 15px;
+      border-radius: 8px;
+      outline: none;
+      border: none;
+      font-family: m regular;
+      letter-spacing: 0.75px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .Main-btn:hover {
+      background-color: #12090d;
+      transform: scale(1.02);
+      color: white;
+    }
+    .Popup-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #999;
+      cursor: pointer;
+    }
+    .Popup-close:hover {
+      color: black;
+    }
+    .Link-pink {
+      color: #12090d;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .bottom-popup button {
+      margin-top: 10px;
+    }
+
+    /* wishlist popup */
+    .wishlist-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 15px 0;
+      position: relative;
+    }
+
+    .wishlist-img {
+      width: 100px;
+      height: 110px;
+      border-radius: 6px;
+      margin-right: 12px;
+      object-fit: cover;
+      border: 1px solid rgb(18, 9, 13, 0.15);
+      box-shadow: 0px 0px 5px rgb(18, 9, 13, 0.2);
+      cursor: pointer;
+    }
+
+    .wishlist-img:hover {
+      box-shadow: 0px 0px 5px rgb(18, 9, 13, 0.2);
+    }
+
+    .wishlist-img img {
+      scale: 1.02;
+    }
+
+    .wishlist-details {
+      flex: 1;
+    }
+
+    .add-to-cart-btn {
+      background-color: transparent;
+      color: #12090d;
+      border-radius: 5px;
+      border: 1px solid #12090d;
+      transition: 0.2s ease-in-out;
+    }
+
+    .add-to-cart-btn:hover {
+      scale: 1.02;
+    }
+
+    .stock-status {
+      font-size: 14px;
+      color: #4b6a54;
+      margin-bottom: 10px;
+    }
+
+    .wishlist-content {
+      overflow-y: auto;
+      padding-right: 15px;
+      max-height: 50vh;
+    }
+
+    .trash-btn {
+      outline: none;
+      border: none;
+    }
+
+    .trash-btn {
+      color: #12090d !important;
+      transform: none !important;
+      text-shadow: none !important;
+      cursor: pointer;
+      transition: transform 0.4s ease;
+    }
+    .trash-btn:hover {
+      transform: none !important;
+      text-shadow: none !important;
+      transform: rotateY(20deg) rotateX(10deg) scale(1.05) !important;
+      text-shadow: 1px 1px 2px rgba(73, 73, 73, 0.2) !important;
+      color: var(--main-pink) !important;
+    }
+
+    /* cart */
+
+    .Cart-popup {
+      width: 350px;
+    }
+    .cart-popup h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-family: c;
+      letter-spacing: 1.5px;
+    }
+    .free-shipping {
+      background-color: transparent;
+      border: 1px solid #12090d;
+      color: #12090d;
+      padding: 8px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .cart-items {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .cart-item img {
+      width: 100px;
+      height: 100px;
+      border-radius: 6px;
+      margin-right: 12px;
+      object-fit: cover;
+      border: 1px solid rgb(18, 9, 13, 0.15);
+      box-shadow: 0px 0px 5px rgb(18, 9, 13, 0.2);
+      cursor: pointer;
+    }
+
+    .cart-item img:hover {
+      box-shadow: 0px 0px 5px rgb(18, 9, 13, 0.25);
+    }
+    .cart-details {
+      display: flex;
+      justify-content: space-between;
+      flex: 1;
+      align-items: center;
+    }
+    .cart-details p {
+      margin: 0;
+      font-weight: 500;
+    }
+    .cart-details span {
+      font-weight: bold;
+      color: #333;
+    }
+    .cart-total {
+      text-align: right;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .cart-popup button {
+      width: 100%;
+      padding: 10px;
+      background-color: #12090d;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .cart-popup button:hover {
+      background-color: #12090d;
+    }
+    .cart-popup button:focus {
+      outline: none;
+    }
+
+    /* newsletter */
+    #newsletter {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 0;
+      width: 100%;
+      background-image: url(ASSETS/IMAGES/background.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    #text-5 h1 {
+      font-family: ts;
+      font-size: 36px;
+      font-weight: bold;
+      color: white;
+      letter-spacing: -0.7px;
+    }
+    #text-5 p {
+      font-family: m regular;
+      font-size: 14px;
+      font-weight: lighter;
+      color: white;
+      letter-spacing: 0.75px;
+    }
+    .btn5 {
+      background: transparent;
+      border: 1px solid rgb(255, 255, 255, 0.5);
+      color: white;
+      font-family: r medium;
+      padding: 12px 200px 12px 10px;
+      box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.05);
+    }
+    .btn5 input {
+      border: none;
+      outline: none;
+      background: transparent;
+      color: rgb(255, 255, 255, 0.8);
+      letter-spacing: 0.75px;
+    }
+    .arrow1 {
+      position: relative;
+      left: 180px;
+    }
+    .btn5:hover {
+      border: 1.25px solid white;
+      transform: scale(1.02);
+    }
+    .btn5 input::placeholder {
+      color: white;
+      opacity: 0.8;
+    }
+
+    /* media queries */
+    @media (max-width: 900px) {
+      .Search-input {
+        width: 225px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .Nav-links {
+        border: none;
+        padding: 0;
+      }
+      .Nav-links ul {
+        display: none;
+      }
+      .Hamburger {
+        display: block;
+        color: white;
+        font-weight: lighter;
+        transition: transform 0.2s ease;
+      }
+      .Icon:hover .Icon-text {
+        opacity: 0;
+      }
+      .Hamburger:hover {
+        transform: scale(1.09);
+        color: white;
+        text-shadow: 1px 1px 2px rgba(73, 73, 73, 0.2);
+      }
+      .Mobile-menu.show {
+        display: flex;
+      }
+      .Mobile-menu a {
+        position: relative;
+        padding: 15px;
+        text-decoration: none;
+        background-image: url(ASSETS/IMAGES/background.png);
+        color: white;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        font-family: r regular;
+        font-size: 16px;
+        letter-spacing: 0.75px;
+        border-top: 1px solid rgb(238, 238, 238, 0.02);
+      }
+      .Mobile-menu a:hover {
+        font-family: r medium;
+      }
+      .Top-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .Icon-text {
+        font-size: 8px;
+      }
+      .Logo {
+        opacity: 1;
+        transform: translateY(0);
+        animation: none;
+        justify-content: flex-start;
+        font-size: 22px;
+        padding-left: 10px;
+      }
+      .Logo-text {
+        font-size: 22px;
+      }
+      .Search-container {
+        position: relative;
+        width: 100%;
+        padding: 0 10px;
+        order: 3;
+      }
+      .Search-input {
+        width: 100%;
+        padding: 10px 40px 10px 10px;
+        border-radius: 25px;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+      .Search-container i {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .Search-container i:hover {
+        transform: translateY(-50%);
+        scale: 1.05;
+      }
+      .Icon-group {
+        display: flex;
+        justify-content: center;
+        top: -6px;
+      }
+      .Icon i img {
+        width: 26px;
+      }
+      #sec-2 {
+        padding: 60px;
+        gap: 10px;
+      }
+      #text-2 h2 {
+        font-size: 42px;
+      }
+      #text-2 p {
+        font-size: 20px;
+        line-height: 26px;
+      }
+    }
+
+    @media only screen and (min-width: 475px) {
+      .footer-col {
+        width: 50%;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media (min-width: 750px) {
+      .hero-content h1 {
+        font-size: 30px;
+        color: white;
+        font-family: ts;
+        font-weight: bold;
+        letter-spacing: -0.7px;
+        margin-bottom: 30px;
+      }
+      .hero-content p {
+        color: white;
+        font-size: 18px;
+        font-family: m regular;
+        letter-spacing: 0.5px;
+        line-height: 42px;
+        margin-bottom: 26px;
+      }
+      .section-heading h2 {
+        font-size: 38px;
+      }
+      #text-2 h2 {
+        font-size: 42px;
+      }
+      #text-2 p {
+        font-size: 18px;
+      }
+      #sec-2 h4 {
+        font-size: 28px;
+      }
+      .product-categories h4 {
+        font-size: 26px;
+      }
+      #contact h1 {
+        font-size: 44px;
+        padding-bottom: 20px;
+      }
+      .name {
+        padding: 15px 400px 15px 10px;
+        margin-bottom: 20px;
+      }
+      .email {
+        padding: 15px 400px 15px 10px;
+        margin-bottom: 20px;
+      }
+      .ph {
+        padding: 15px 400px 15px 10px;
+        margin-bottom: 20px;
+      }
+      .comment {
+        padding: 15px 400px 100px 10px;
+      }
+      .submit {
+        padding: 15px 40px 15px 40px;
+        margin-top: 20px;
+      }
+      /* footer */
+      .footer-col {
+        width: 33.3%;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .navbar {
+        overflow: hidden;
+      }
+      .hero-content h1 {
+        font-size: 45px;
+        color: white;
+        font-family: ts;
+        font-weight: bold;
+        letter-spacing: -0.7px;
+        margin-bottom: 30px;
+      }
+      .hero-content p {
+        color: white;
+        font-size: 22px;
+        font-family: m regular;
+        letter-spacing: 0.5px;
+        line-height: 34px;
+        margin-bottom: 36px;
+      }
+      .ps-icon {
+        font-size: 100px;
+        opacity: 0;
+      }
+
+      #sec-2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+        padding: 60px;
+      }
+      .section-heading h2 {
+        font-size: 40px;
+      }
+      #sec-2 img {
+        margin-right: 40px;
+      }
+      .left-img {
+        left: -70px;
+      }
+      .right-img {
+        right: -70px;
+        top: -10%;
+      }
+      #text-2 h2 {
+        font-size: 42px;
+      }
+      #text-2 p {
+        font-size: 14px;
+      }
+      #sec-2 h4 {
+        font-size: 28px;
+      }
+      #contact h1 {
+        font-size: 48px;
+      }
+      .name {
+        padding: 15px 500px 15px 10px;
+      }
+      .email {
+        padding: 15px 500px 15px 10px;
+      }
+      .ph {
+        padding: 15px 500px 15px 10px;
+      }
+      .comment {
+        padding: 15px 500px 100px 10px;
+      }
+      .submit {
+        padding: 15px 50px 15px 50px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      #sec-2 {
+        padding: 80px;
+        gap: 20px;
+      }
+      .main-img {
+        width: 280px;
+        height: 340px;
+      }
+      .side-img {
+        width: 150px;
+      }
+      #sec-2 img {
+        margin-right: 20px;
+      }
+      .left-img {
+        left: -90px;
+      }
+      .right-img {
+        right: -100px;
+        top: -10%;
+      }
+      #text-2 h2 {
+        font-size: 46px;
+      }
+      .section-heading h2 {
+        font-size: 44px;
+      }
+      #text-2 p {
+        font-size: 14px;
+        line-height: 26px;
+      }
+      .product-categories p {
+        font-size: 16px;
+      }
+      .video-text h2 {
+        font-size: 45px;
+      }
+
+      .video-text p {
+        font-size: 20px;
+        line-height: 34px;
+      }
+      .footer {
+        padding: 100px;
+      }
+      .footer-col {
+        width: 25%;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media (min-width: 1070px) {
+      .navbar {
+        overflow: visible;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      #sec-2 {
+        padding-top: 120px;
+        gap: 30px;
+      }
+      #text-2 {
+        padding-bottom: 0;
+        margin-left: -20px;
+      }
+      #text-2 h2 {
+        font-size: 60px;
+      }
+      #text-2 p {
+        font-size: 20px;
+        line-height: 34px;
+      }
+
+      .video-text h2 {
+        font-size: 45px;
+      }
+
+      .video-text p {
+        font-size: 20px;
+        line-height: 34px;
+      }
+
+      .section-heading h2 {
+        font-size: 50px;
+      }
+
+      .section-heading p {
+        font-size: 22px;
+        line-height: 34px;
+      }
+      .main-img {
+        width: 350px;
+        height: 440px;
+      }
+      .side-img {
+        width: 160px;
+      }
+      #sec-2 img {
+        margin-right: 0px;
+      }
+      .left-img {
+        left: -90px;
+        top: 50%;
+      }
+      .right-img {
+        right: -80px;
+        top: -10%;
+      }
+      #contact h1 {
+        font-size: 55px;
+      }
+      .name {
+        padding: 15px 700px 15px 10px;
+      }
+      .email {
+        padding: 15px 700px 15px 10px;
+      }
+      .ph {
+        padding: 15px 700px 15px 10px;
+      }
+      .comment {
+        padding: 15px 700px 100px 10px;
+      }
+      .submit {
+        padding: 20px 60px 20px 60px;
+      }
+      #newsletter {
+        padding: 80px 0;
+      }
+      #text-5 h1 {
+        font-size: 45px;
+      }
+      #text-5 p {
+        font-size: 20px;
+      }
+      .btn5 {
+        padding: 15px 220px 15px 20px;
+      }
+    }
+    @media (min-width: 1300px) {
+      #text-2 {
+        padding-bottom: 0;
+        margin-left: -40px;
+      }
+    }
+  </style>
+  <body>
+    <div id="container">
+      <!-- pop up -->
+      <div id="welcome-popup">
+        <div>
+          <i class="fas fa-headset"></i>
+          <h2>Hello Gamer!</h2>
+          <p>
+            Welcome to the ultimate destination for PlayStation fans. Explore
+            Gear, Gadgets, Games and more.
+          </p>
+          <button onclick="scrollToAllcollections()">Explore Now</button>
+          <button
+            onclick="document.getElementById('welcome-popup').style.display='none'"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+
+      <!-- sale-bar -->
+      <div class="floating-sale-bar">
+        <div class="sale-content">
+          <div class="sale-left">
+            <span
+              ><h2 class="text-scroll">
+                GAME. GEAR. GLORY. | GAME. GEAR. GLORY. | GAME. GEAR. GLORY. |
+                GAME. GEAR. GLORY. | GAME. GEAR. GLORY. | GAME. GEAR. GLORY. |
+                GAME. GEAR. GLORY. | GAME. GEAR. GLORY. | GAME. GEAR. GLORY. |
+                GAME. GEAR. GLORY. |
+              </h2></span
+            >
+          </div>
+        </div>
+      </div>
+      <!--sale bar ends here -->
+
+      <!-- header starts here -->
+      <header class="Navbar">
+        <div class="Top-bar">
+          <div class="Search-container">
+            <input
+              type="text"
+              id="animatedInput"
+              class="Search-input"
+              placeholder="Search"
+            />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+
+          <a href="index.html">
+            <div class="Logo">
+              <span class="Logo-text">PANDORA BOX</span>
+            </div>
+          </a>
+          <div class="Popup-overlay" id="overlay"></div>
+          <div class="Icon-group">
+            <div class="Icon">
+              <i class="bi bi-suit-heart"></i>
+              <!-- wishlist popup -->
+              <div class="Popup-box Wishlist-popup bottom-popup">
+                <span class="Popup-close">&times;</span>
+
+                <!-- item -->
+                <h2>Wishlist</h2>
+                <hr style="opacity: 0.6" />
+
+                <div class="wishlist-content">
+                  <div class="wishlist-item">
+                    <a href="ASSETS/IMAGES/p2.png" target="_blank">
+                      <img src="ASSETS/IMAGES/p2.png" class="wishlist-img"
+                    /></a>
+                    <div class="wishlist-details">
+                      <p style="font-size: 18px">Wireless Headset</p>
+                      <p>Added on: <span>May 21, 2025</span></p>
+                      <p style="font-family: m bold; font-weight: bold">
+                        <span>$788.80</span>
+                      </p>
+                      <p class="stock-status">
+                        <strong>Stock:</strong> In Stock
+                      </p>
+                      <button class="add-to-cart-btn Main-btn add-to-cart">
+                        Add to Cart
+                      </button>
+                    </div>
+                    <button
+                      class="wishlist-remove"
+                      style="border: none; outline: none"
+                    >
+                      <i class="fas fa-trash-alt trash-btn"></i>
+                    </button>
+                  </div>
+
+                  <div class="wishlist-item">
+                    <a href="ASSETS/IMAGES/p4.png" target="_blank">
+                      <img src="ASSETS/IMAGES/p4.png" class="wishlist-img"
+                    /></a>
+                    <div class="wishlist-details">
+                      <p style="font-size: 18px">Wireless XBOX</p>
+                      <p>Added on: <span>June 07, 2025</span></p>
+                      <p style="font-family: m bold; font-weight: bold">
+                        <span>$65.39</span>
+                      </p>
+                      <p class="stock-status">
+                        <strong>Stock:</strong> In Stock
+                      </p>
+                      <button class="add-to-cart-btn Main-btn add-to-cart">
+                        Add to Cart
+                      </button>
+                    </div>
+                    <button
+                      class="wishlist-remove"
+                      style="border: none; outline: none"
+                    >
+                      <i class="fas fa-trash-alt trash-btn"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Icon">
+              <i class="bi bi-bag-check"></i>
+              <!-- cart popup -->
+              <div class="Popup-box Cart-popup bottom-popup">
+                <span class="Popup-close">&times;</span>
+                <h2>Cart</h2>
+                <div class="free-shipping">
+                  You're eligible for FREE shipping!
+                </div>
+                <div class="cart-items">
+                  <div class="cart-item">
+                    <a href="ASSETS/IMAGES/pc assets.png" target="_blank"
+                      ><img
+                        src="ASSETS/IMAGES/pc assets.png"
+                        width="100px"
+                        alt="product 1"
+                    /></a>
+                    <div class="cart-details">
+                      <p>Glass Case</p>
+                      <span>$600.80</span>
+                    </div>
+                  </div>
+
+                  <div class="cart-item">
+                    <a href="ASSETS/IMAGES/p8.png" target="_blank">
+                      <img
+                        src="ASSETS/IMAGES/p8.png"
+                        width="100px"
+                        alt="product 1"
+                    /></a>
+                    <div class="cart-details">
+                      <p>A50 Wireless Headset</p>
+                      <span>$263.59</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="cart-total">
+                  <strong>Discount: </strong>$100
+                  <br />
+                  <strong>SubTotal:</strong>
+                  <del>$864.39 </del>&nbsp; $764.39
+                </div>
+                <button class="Main-btn" id="closeCart">
+                  Checkout Now &rarr;
+                </button>
+              </div>
+            </div>
+
+            <div class="Icon">
+              <i class="bi bi-person"></i>
+              <!-- login popup -->
+              <div class="Popup-box Login-popup">
+                <span class="Popup-close">&times;</span>
+                <h2>Login / Signup</h2>
+                <input
+                  type="text"
+                  required
+                  placeholder="Enter Email or Username*"
+                />
+                <input type="password" required placeholder="Enter Password*" />
+                <button class="Main-btn">Login Now &rightarrow;</button
+                ><br /><br />
+                <p>Forgot Password?<a href="#"> Click Here</a></p>
+                <p>Don't have an account? <a href="#">Sign Up</a></p>
+              </div>
+            </div>
+
+            <div class="Hamburger">
+              <i class="fas fa-bars"></i>
+            </div>
+          </div>
+        </div>
+
+        <nav class="Nav-links">
+          <ul>
+            <li><a href="index.html" class="default-active">Home</a></li>
+            <li><a href="#about-us">About</a></li>
+            <li><a href="#tab1">Shop</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#blogs">Blogs</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="Mobile-menu">
+          <a href="index.html">Home</a>
+          <a href="#about-us">About</a>
+          <a href="#tab1">Shop</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#blogs">Blogs</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </header>
+      <!-- header ends here -->
+
+      <!-- sec-1 starts here -->
+      <div id="sec-1">
+        <div class="hero-section" id="hero">
+          <div class="hero-overlay">
+            <div class="hero-content" id="hero-content">
+              <h1 id="heroTitle">Unleash The Power Of Play</h1>
+              <p id="heroSubtitle">
+                Dive into a world where boundaries blur,reality fades, and the
+                game begins - <br />
+                Welcome to Pandora Box, where every gamer finds their destiny.
+              </p>
+              <button
+                class="btn2"
+                id="heroBtn"
+                onclick="location.href='#';"
+                type="button"
+              >
+                EXPLORE NOW
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- thumbnail -->
+        <div class="hero-switcher">
+          <img
+            src="ASSETS/IMAGES/sec 1-21.jpg"
+            onclick="changeHero(0)"
+            class="thumb"
+          />
+          <img
+            src="ASSETS/IMAGES/sec 1-15.jpg"
+            onclick="changeHero(1)"
+            class="thumb active"
+          />
+          <img
+            src="ASSETS/IMAGES/sec 1-5.jpg"
+            onclick="changeHero(2)"
+            class="thumb"
+          />
+        </div>
+      </div>
+
+      <!-- sec-2 starts here -->
+      <div id="about-us">
+        <div id="sec-2">
+          <div class="img-wrapper">
+            <!-- center img -->
+            <img
+              class="main-img"
+              data-aos="zoom-in"
+              data-aos-delay="80"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out"
+              src="ASSETS/IMAGES/sec 1-12.jpg"
+            />
+
+            <!-- left img -->
+            <img
+              class="side-img left-img"
+              src="ASSETS/IMAGES/sec 2-11.jpg"
+              data-aos="fade-right"
+              data-aos-delay="120"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out"
+            />
+
+            <!-- right img -->
+            <img
+              class="side-img right-img"
+              src="ASSETS/IMAGES/sec 2-10.jpg"
+              data-aos="fade-left"
+              data-aos-delay="150"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out"
+            />
+          </div>
+          <br /><br /><br /><br />
+
+          <div id="text-2">
+            <h2
+              data-aos="zoom-fade-up"
+              data-aos-delay="50"
+              data-aos-duration="200"
+              data-aos-easing="ease-in-out"
+            >
+              About <span class="span-1">Us!</span>
+            </h2>
+            <br />
+            <p
+              data-aos="zoom-fade-up"
+              data-aos-delay="50"
+              data-aos-duration="200"
+              data-aos-easing="ease-in-out"
+            >
+              At <strong>Pandora Box</strong>, we Live and Breathe PlayStation.
+              <br />What started as a passion project for gamers, by<br />gamers,
+              has evolved into a digital haven for every<br />PlayStation
+              enthusiast. From iconic consoles and<br />
+              cutting-edge accessories to legendary titles and <br />new-gen
+              gear — We bring together everything you<br />need to level up.
+            </p>
+            <br />
+            <button class="btn2">DISCOVER MORE</button>
+          </div>
+        </div>
+      </div>
+      <!-- sec-2 ends here -->
+      <!-- sec-3 starts here -->
+      <div id="all-collection">
+        <div class="product-categories" id="categories">
+          <div class="section-heading">
+            <h2
+              data-aos="zoom-fade-up"
+              data-aos-delay="50"
+              data-aos-duration="200"
+              data-aos-easing="ease-in-out"
+            >
+              TOP <span class="span-1">CATEGORIES!</span>
+            </h2>
+            <br />
+            <p
+              data-aos="zoom-fade-up"
+              data-aos-delay="50"
+              data-aos-duration="200"
+              data-aos-easing="ease-in-out"
+            >
+              Everything you need to complete your <br />Gaming Setup.
+            </p>
+          </div>
+          <br />
+          <div class="category-grid" data-aos="fade-up">
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/pc assets.png" />
+                <div class="overlay">
+                  <a href="#" class="shop-btn">VIEW ALL &rarr;</a>
+                </div>
+              </div>
+              <br />
+              <h3>Cases</h3>
+              <p>Protect your Console with Style and Strength.</p>
+            </div>
+
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/pc chair.png" />
+                <div class="overlay">
+                  <a href="#" class="shop-btn">VIEW ALL &rarr;</a>
+                </div>
+              </div>
+              <br />
+              <h3>CHAIRS</h3>
+              <p>Game in comfort with erogonomic, pro-level seating.</p>
+            </div>
+
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/pc headset.png" />
+                <div class="overlay">
+                  <a href="#" class="shop-btn">VIEW ALL &rarr;</a>
+                </div>
+              </div>
+              <br />
+              <h3>HEADSETS</h3>
+              <p>Immerse Yourself in Rich, Crystal-Clear game audio.</p>
+            </div>
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/pc mouse.png" />
+                <div class="overlay">
+                  <a href="#" class="shop-btn">VIEW ALL &rarr;</a>
+                </div>
+              </div>
+              <br />
+              <h3>MOUSE</h3>
+              <p>Smooth, fast, and accurate control in every move.</p>
+            </div>
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/pc keyboard.png" />
+                <div class="overlay">
+                  <a href="#" class="shop-btn">VIEW ALL &rarr;</a>
+                </div>
+              </div>
+              <br />
+              <h3>KEYBOARDS</h3>
+              <p>Responsive Keys designed for precision and speed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sec-3 ends here -->
+      <!-- video starts here -->
+      <section class="video-section">
+        <div class="video-text">
+          <h2
+            data-aos="zoom-fade-in"
+            data-aos-duration="200"
+            data-aos-easing="ease-in-out"
+          >
+            Game the Way You <span class="span-1">Feel It!</span>
+          </h2>
+          <br />
+          <p
+            data-aos="zoom-fade-in"
+            data-aos-duration="200"
+            data-aos-easing="ease-in-out"
+          >
+            Experience the Thrill, the Visuals, and the Power of PlayStation —
+            <br />Captured in Motion.
+          </p>
+        </div>
+        <br /><br />
+
+        <div data-aos="fade-up" class="video-container">
+          <div class="video-wrapper">
+            <video
+              src="ASSETS/IMAGES/video 1.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              controls
+            ></video>
+          </div>
+          <div class="video-wrapper">
+            <video
+              src="ASSETS/IMAGES/video 2.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              controls
+            ></video>
+          </div>
+        </div>
+      </section>
+      <!-- parallax ends here -->
+
+      <div id="tab1" class="content">
+        <div class="tab-products">
+          <br /><br />
+          <div class="section-heading">
+            <h2
+              data-aos="zoom-fade-up"
+              data-aos-delay="50"
+              data-aos-duration="200"
+              data-aos-easing="ease-in-out"
+            >
+              BEST <span class="span-1">SELLERS!</span>
+            </h2>
+            <br />
+            <p
+              data-aos="zoom-fade-up"
+              data-aos-delay="50"
+              data-aos-duration="200"
+              data-aos-easing="ease-in-out"
+            >
+              Gear Up with the Best-Selling Consoles, Accessories, <br />and
+              Epic Game Titles.
+            </p>
+          </div>
+          <br /><br />
+          <div class="category-grid" data-aos="fade-up">
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/p1.png" />
+                <div class="Wishlist-btn" onclick="toggleWishlist(this)">
+                  <i class="far fa-heart"></i>
+                </div>
+              </div>
+              <br />
+              <h3>K780 Wireless Keyboard</h3>
+              <div class="star-rating">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span> (1.5k+)
+              </div>
+              <br />
+              <h5>$914.44</h5>
+              <br />
+              <button class="btn1 b2 add-to-cart">
+                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;ADD TO CART
+              </button>
+            </div>
+
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/p2.png" />
+                <div class="Wishlist-btn" onclick="toggleWishlist(this)">
+                  <i class="far fa-heart"></i>
+                </div>
+              </div>
+              <br />
+              <h3>RGB Wireless Headset</h3>
+              <div class="star-rating">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span> (1.7k+)
+              </div>
+              <br />
+              <h5>$788.80</h5>
+              <br />
+              <button class="btn1 b2 add-to-cart">
+                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;ADD TO CART
+              </button>
+            </div>
+
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/p3.png" />
+                <div class="Wishlist-btn" onclick="toggleWishlist(this)">
+                  <i class="far fa-heart"></i>
+                </div>
+              </div>
+              <br />
+              <h3>Antec Gaming Case</h3>
+              <div class="star-rating">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span> (1k+)
+              </div>
+              <br />
+              <h5>$168.58</h5>
+              <br />
+              <button class="btn1 b2 add-to-cart">
+                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;ADD TO CART
+              </button>
+            </div>
+
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/p4.png" />
+                <div class="Wishlist-btn" onclick="toggleWishlist(this)">
+                  <i class="far fa-heart"></i>
+                </div>
+              </div>
+              <br />
+              <h3>Microsoft Xbox Wireless Mouse</h3>
+              <div class="star-rating">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span> (3.4k+)
+              </div>
+              <br />
+              <h5>$65.39</h5>
+              <br />
+              <button class="btn1 b2 add-to-cart">
+                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;ADD TO CART
+              </button>
+            </div>
+          </div>
+          <br />
+
+          <!-- products 5-8 -->
+
+          <div class="category-grid" data-aos="fade-up">
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/p5.png" />
+                <div class="Wishlist-btn" onclick="toggleWishlist(this)">
+                  <i class="far fa-heart"></i>
+                </div>
+              </div>
+              <br />
+              <h3>Juggernaut 32 Inch Monitor</h3>
+              <div class="star-rating">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span> (2.6k+)
+              </div>
+              <br />
+              <h5>$970.25</h5>
+              <br />
+              <button class="btn1 b2 add-to-cart">
+                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;ADD TO CART
+              </button>
+            </div>
+
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/p6.png" />
+                <div class="Wishlist-btn" onclick="toggleWishlist(this)">
+                  <i class="far fa-heart"></i>
+                </div>
+              </div>
+              <br />
+              <h3>Antec 1FT Gaming Case</h3>
+              <div class="star-rating">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span> (1.8k+)
+              </div>
+              <br />
+              <h5>$740.78</h5>
+              <br />
+              <button class="btn1 b2 add-to-cart">
+                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;ADD TO CART
+              </button>
+            </div>
+
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/p7.png" />
+                <div class="Wishlist-btn" onclick="toggleWishlist(this)">
+                  <i class="far fa-heart"></i>
+                </div>
+              </div>
+              <br />
+              <h3>Deepcool Glass Case</h3>
+              <div class="star-rating">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span> (1k+)
+              </div>
+              <br />
+              <h5>$357.48</h5>
+              <br />
+              <button class="btn1 b2 add-to-cart">
+                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;ADD TO CART
+              </button>
+            </div>
+
+            <div class="category-card">
+              <div class="i-w">
+                <img src="ASSETS/IMAGES/p8.png" />
+                <div class="Wishlist-btn" onclick="toggleWishlist(this)">
+                  <i class="far fa-heart"></i>
+                </div>
+              </div>
+              <br />
+              <h3>A50 Wireless Headset</h3>
+              <div class="star-rating">
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span>
+                <span class="star filled">&#9733;</span> (1.6k+)
+              </div>
+              <br />
+              <h5>$263.59</h5>
+              <br />
+              <button class="btn1 b2 add-to-cart">
+                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;ADD TO CART
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sec-5-1 ends here -->
+
+      <!-- sale-bar 2 starts here -->
+      <div class="floating-sale-bar">
+        <div class="sale-content">
+          <div class="sale-left">
+            <span
+              ><h2 class="text-scroll">
+                10% OFF JOIN NOW! | 10% OFF JOIN NOW! | 10% OFF JOIN NOW! | 10%
+                OFF JOIN NOW! | 10% OFF JOIN NOW! | 10% OFF JOIN NOW! | 10% OFF
+                JOIN NOW! | 10% OFF JOIN NOW! | 10% OFF JOIN NOW! | 10% OFF JOIN
+                NOW! |
+              </h2></span
+            >
+          </div>
+        </div>
+      </div>
+      <!--sale bar2 ends here -->
+      <!--newsletter starts here-->
+      <div id="newsletter">
+        <div id="text-5">
+          <h1
+            data-aos="zoom-fade-up"
+            data-aos-delay="50"
+            data-aos-duration="200"
+            data-aos-easing="ease-in-out"
+          >
+            Join to get <span class="span-1">10% off!</span>
+          </h1>
+          <br />
+          <p
+            data-aos="zoom-fade-up"
+            data-aos-delay="50"
+            data-aos-duration="200"
+            data-aos-easing="ease-in-out"
+          >
+            Join our Newsletter to get 10% off on your first order &<br />Be the
+            first to know about new collections and exclusive offers.
+          </p>
+          <br /><br />
+          <button type="submit" class="btn5">
+            <input
+              style="color: white"
+              type="email"
+              placeholder="Email"
+              required
+            /><span class="arrow1">&#8594;</span>
+          </button>
+        </div>
+      </div>
+      <!--newsletter ends here-->
+
+      <!-- gallery sec starts here -->
+
+      <section class="gallery-section video-section" id="gallery">
+        <div class="gallery-text video-text">
+          <h2
+            data-aos="zoom-fade-in"
+            data-aos-duration="200"
+            data-aos-easing="ease-in-out"
+          >
+            Image <span class="span-1">Gallery!</span>
+          </h2>
+          <br />
+          <p
+            data-aos="zoom-fade-in"
+            data-aos-duration="200"
+            data-aos-easing="ease-in-out"
+          >
+            Peak inside Iconic PlayStation 5 titles - Click to <br />Explore and
+            Relive the epic.
+          </p>
+        </div>
+        <br /><br />
+
+        <div class="gallery-grid" data-aos="fade-up">
+          <div
+            class="gallery-item"
+            onclick="openLightBox(this)"
+            data-title="Gran Turismo 7"
+            data-desc="Whether you're a competitive or casual racer- find your line with a staggering collection of game modes.."
+          >
+            <img src="ASSETS/IMAGES/g5.png" />
+            <div class="gallery-overlay">
+              <h4>Gran Turismo 7</h4>
+              <p>
+                Whether you're a competitive or casual
+                racer,collector,tuner,livery designer or photographer- find your
+                line with a staggering collection of game modes including
+                fan-favourites like GT Campaign, Arcade and Driving School.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="gallery-item"
+            onclick="openLightBox(this)"
+            data-title="Ratchet & Clank : Rift Apart"
+            data-desc="Blast your way through an interdimensional adventure with Ratchet and Clank.."
+          >
+            <img src="ASSETS/IMAGES/g6.png" />
+            <div class="gallery-overlay">
+              <h4>Ratchet & Clank : Rift Apart</h4>
+              <p>
+                Blast your way through an interdimensional adventure with
+                Ratchet and Clank..
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="gallery-item"
+            onclick="openLightBox(this)"
+            data-title="Until Dawn"
+            data-desc="Rebuild from the ground up for PS5 consoles and PC, it invites you to immerse youself in a gripping slasher horror.."
+          >
+            <img src="ASSETS/IMAGES/g7.png" />
+            <div class="gallery-overlay">
+              <h4>Until Dawn</h4>
+              <p>
+                Rebuild from the ground up for PS5 consoles and PC, it invites
+                you to immerse youself in a gripping slasher horror..
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="gallery-item"
+            onclick="openLightBox(this)"
+            data-title="Days Gone Remastered"
+            data-desc="Step into the dirt flecked shoes of former outlaw biker Deacon St.John and brave a post-apocalyptic open-world.."
+          >
+            <img src="ASSETS/IMAGES/g8.png" />
+            <div class="gallery-overlay">
+              <h4>Days Gone Remastered</h4>
+              <p>
+                Step into the dirt flecked shoes of former outlaw biker Deacon
+                St.John and brave a post-apocalyptic open-world..
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="gallery-item"
+            onclick="openLightBox(this)"
+            data-title="God of War Ragnarok"
+            data-desc="Kratos and Aterus must journey to each of the Nine Realms in search of answers as Asgardian forces prepare for a prophesied battle that will end the world.."
+          >
+            <img src="ASSETS/IMAGES/g1.png" />
+            <div class="gallery-overlay">
+              <h4>God of War Ragnarok</h4>
+              <p>
+                Kratos and Aterus must journey to each of the Nine Realms in
+                search of answers as Asgardian forces prepare for a battle that
+                will end the world..
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="gallery-item"
+            onclick="openLightBox(this)"
+            data-title="Marvel's Spider Man 2"
+            data-desc="Spider-Men, Peter Parker and Miles Morales, return for an exciting new Adventure in the critically acclaimed Marvel's Spider-Man franchise for PS5.."
+          >
+            <img src="ASSETS/IMAGES/g2.png" />
+            <div class="gallery-overlay">
+              <h4>Marvel's Spider Man 2</h4>
+              <p>
+                Spider-Men, Peter Parker and Miles Morales, return for an
+                exciting new Adventure in the critically acclaimed Marvel's
+                Spider-Man franchise for PS5..
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="gallery-item"
+            onclick="openLightBox(this)"
+            data-title="Stellar Blade"
+            data-desc="Immerse youself in a highly detailed post-apocalyptic world that blends beauty and horror to spectacular effect.."
+          >
+            <img src="ASSETS/IMAGES/g3.png" />
+            <div class="gallery-overlay">
+              <h4>Stellar Blade</h4>
+              <p>
+                Immerse youself in a highly detailed post-apocalyptic world that
+                blends beauty and horror to spectacular effect..
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="gallery-item"
+            onclick="openLightBox(this)"
+            data-title="Helldivers 2"
+            data-desc="Join forces with up to three friends and wreak havoc on an alien scourge, in this Multiplayer co-op shooter for PS5.."
+          >
+            <img src="ASSETS/IMAGES/g4.png" />
+            <div class="gallery-overlay">
+              <h4>Helldivers 2</h4>
+              <p>
+                Join forces with up to three friends and wreak havoc on an alien
+                scourge , in this Multiplayer co-op shooter for PS5..
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- lightbox -->
+        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+          <span class="close-btn">&times;</span>
+          <div class="lightbox-content">
+            <img id="lightbox-img" src="" />
+            <div class="lightbox-text">
+              <h3 id="lightbox-title"></h3>
+              <p id="lightbox-desc"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- gallery sec ends here -->
+
+      <!-- featured sec starts here -->
+      <div class="f-w product-categories section-heading featured">
+        <h2
+          class="f-head"
+          data-aos="zoom-fade-up"
+          data-aos-delay="50"
+          data-aos-duration="200"
+          data-aos-easing="ease-in-out"
+        >
+          Next Gen <span class="span-1">Uncovered!</span>
+        </h2>
+        <br />
+        <p>
+          Next-Gen Features, one hover away - <br />Explore what sets PS5 Apart.
+        </p>
+        <br /><br />
+
+        <div
+          class="featured-sec"
+          data-aos="fade-in"
+          data-aos-duration="100"
+          data-aos-easing="ease-in-out"
+        >
+          <div class="featured-track">
+            <img src="ASSETS/IMAGES/sd 1.png" alt="f-img1" />
+            <img src="ASSETS/IMAGES/sd 2.png" alt="f-img2" />
+            <img src="ASSETS/IMAGES/sd 3.png" alt="f-img3" />
+            <img src="ASSETS/IMAGES/sd 4.png" alt="f-img4" />
+            <img src="ASSETS/IMAGES/sd 1.png" alt="f-img1" />
+            <img src="ASSETS/IMAGES/sd 2.png" alt="f-img2" />
+            <img src="ASSETS/IMAGES/sd 3.png" alt="f-img3" />
+            <img src="ASSETS/IMAGES/sd 4.png" alt="f-img4" />
+            <img src="ASSETS/IMAGES/sd 1.png" alt="f-img1" />
+            <img src="ASSETS/IMAGES/sd 2.png" alt="f-img2" />
+            <img src="ASSETS/IMAGES/sd 3.png" alt="f-img3" />
+            <img src="ASSETS/IMAGES/sd 4.png" alt="f-img4" />
+          </div>
+        </div>
+      </div>
+      <!-- featured sec ends here -->
+
+      <!-- blogs sec starts here -->
+      <div id="blogs">
+        <div class="blog-sec section-heading">
+          <h2
+            data-aos="zoom-fade-up"
+            data-aos-delay="50"
+            data-aos-duration="200"
+            data-aos-easing="ease-in-out"
+          >
+            Latest PS5 <span class="span-1">Blogs!</span>
+          </h2>
+          <br /><br /><br />
+          <div class="blog-grid">
+            <div class="blog-card" data-aos="fade-up">
+              <div class="card-inner">
+                <div class="card-front">
+                  <img src="ASSETS/IMAGES/blog 4.png" alt="blogs" />
+                </div>
+                <div class="card-back">
+                  <p>
+                    <strong>Dive deeper into Mafia:</strong> The Old Country
+                    gameplay ahead launch on August 8
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-card" data-aos="fade-up">
+              <div class="card-inner">
+                <div class="card-front">
+                  <img src="ASSETS/IMAGES/blog 5.png" alt="blogs" />
+                </div>
+                <div class="card-back">
+                  <p>
+                    <strong>Monster Hunter Wilds Festival of Accord:</strong>
+                    Flamefete Seasonal Event starts July 23
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="blog-card" data-aos="fade-up">
+              <div class="card-inner">
+                <div class="card-front">
+                  <img src="ASSETS/IMAGES/blog 3.jpg" alt="blogs" />
+                </div>
+                <div class="card-back">
+                  <p>
+                    <strong>Cozy road trip</strong> adventure Outbound is coming
+                    to PS5
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- blogs sec ends here -->
+
+      <!-- sec-6 starts here -->
+      <div id="contact">
+        <div class="text-1 t-1 section-heading">
+          <h2
+            data-aos="fade-zoom-in"
+            data-aos-duration="1000"
+            data-aos-delay="50"
+          >
+            Contact <span class="span-1">Us!</span>
+          </h2>
+          <br />
+          <p
+            data-aos="fade-zoom-in"
+            data-aos-duration="1000"
+            data-aos-delay="50"
+          >
+            Have questions, feedback? Drop us a message -<br />We're always
+            ready to answer!
+          </p>
+        </div>
+        <br />
+        <button class="name">
+          <input type="text" placeholder="Name" required id="name" />
+        </button>
+        <button class="email">
+          <input type="email" required placeholder="Email" id="email" />
+        </button>
+        <button class="ph">
+          <input type="number" placeholder="Phone Number" required id="phone" />
+        </button>
+        <button class="comment">
+          <input
+            type="text"
+            placeholder="Message"
+            required
+            id="message"
+          /></button
+        ><br /><br />
+        <button type="submit" class="btn1 formBtn">SEND MESSAGE &#8599;</button>
+      </div>
+      <!-- sec-6 ends here -->
+      <!-- footer starts here -->
+      <footer class="footer">
+        <section class="footer-container">
+          <section class="row">
+            <section class="footer-col">
+              <h4
+                data-aos="zoom-fade-up"
+                data-aos-delay="50"
+                data-aos-duration="200"
+                data-aos-easing="ease-in-out"
+              >
+                Site Menu
+              </h4>
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about-us">About</a></li>
+                <li><a href="#all-collection">Shop</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#blogs">Blogs</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </section>
+            <section class="footer-col">
+              <h4
+                data-aos="zoom-fade-up"
+                data-aos-delay="50"
+                data-aos-duration="200"
+                data-aos-easing="ease-in-out"
+              >
+                Shop
+              </h4>
+              <ul>
+                <li><a href="#">Gaming Mouse</a></li>
+                <li><a href="#">Gaming Headsets</a></li>
+                <li><a href="#">Gaming Keyboards</a></li>
+                <li><a href="#">Monitors</a></li>
+              </ul>
+            </section>
+            <section class="footer-col">
+              <h4
+                data-aos="zoom-fade-up"
+                data-aos-delay="50"
+                data-aos-duration="200"
+                data-aos-easing="ease-in-out"
+              >
+                Contact
+              </h4>
+              <ul>
+                <li>
+                  <a href="#"
+                    ><i class="fas fa-phone"></i>&nbsp;&nbsp;+011 2345 6789</a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="far fa-envelope"></i
+                    >&nbsp;&nbsp;pandorabox@gmail.com</a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;New Delhi,
+                    India</a
+                  >
+                </li>
+              </ul>
+            </section>
+            <section class="footer-col">
+              <section class="social-links">
+                <h4
+                  data-aos="zoom-fade-up"
+                  data-aos-delay="50"
+                  data-aos-duration="200"
+                  data-aos-easing="ease-in-out"
+                >
+                  Socials
+                </h4>
+                <a href="" target="_blank"
+                  ><i class="fi-brands-instagram"></i></a
+                >&nbsp;
+                <a href="" target="_blank"><i class="fi-brands-whatsapp"></i></a
+                >&nbsp;
+                <a href="" target="_blank"><i class="fi-brands-facebook"></i></a
+                >&nbsp;
+                <a href="" target="_blank"><i class="fi-brands-twitter"></i></a
+                >&nbsp;
+              </section>
+            </section>
+          </section>
+        </section>
+      </footer>
+      <div id="p-footer">&copy; 2025 Pandora Box | All Rights Reserved.</div>
+      <!-- footer ends here -->
+    </div>
+
+    <!-- add to cart -->
+    <div id="atc-popup-overlay">
+      <div id="atc-popup">
+        <div class="popup-icon"><i class="fas fa-check-circle"></i></div>
+        <h3>Product Added to Cart!</h3>
+        <a href="#"><p>Proceed to checkout?</p></a>
+        <button id="popup-ok-btn">OK</button>
+      </div>
+    </div>
+
+    <!-- back to top btn -->
+    <button type="button" class="back-to-top" id="backToTop">
+      <span><i class="fas fa-chevron-up"></i></span>
+    </button>
+
+    <!-- js -->
+
+    <!-- lightbox -->
+    <script>
+      function openLightBox(element) {
+        const imgSrc = element.querySelector("img").src;
+        const title = element.getAttribute("data-title");
+        const desc = element.getAttribute("data-desc");
+
+        document.getElementById("lightbox-img").src = imgSrc;
+
+        document.getElementById("lightbox-title").textContent = title;
+
+        document.getElementById("lightbox-desc").textContent = desc;
+
+        document.getElementById("lightbox").style.display = "flex";
+      }
+
+      function closeLightbox() {
+        document.getElementById("lightbox").style.display = "none";
+      }
+    </script>
+
+    <!-- atw -->
+    <script>
+      function toggleWishlist(button) {
+        const icon = button.querySelector("i");
+        const isActive = icon.classList.contains("fas");
+
+        icon.classList.toggle("fas");
+        icon.classList.toggle("far");
+      }
+    </script>
+
+    <!-- atc -->
+
+    <script>
+      const cartButtons = document.querySelectorAll(".add-to-cart");
+      const atcPopup = document.getElementById("atc-popup");
+      const popupOverlay = document.getElementById("atc-popup-overlay");
+      const popupOkBtn = document.getElementById("popup-ok-btn");
+
+      cartButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          atcPopup.style.display = "block";
+          popupOverlay.style.display = "block";
+        });
+      });
+
+      popupOkBtn.addEventListener("click", () => {
+        atcPopup.style.display = "none";
+        popupOverlay.style.display = "none";
+      });
+    </script>
+
+    <!-- welcome popup -->
+
+    <script>
+      window.onload = function () {
+        document.getElementById("welcome-popup").style.display = "flex";
+      };
+      function scrollToAllcollections() {
+        document.getElementById("welcome-popup").style.display = "none";
+        window.location.href = "#all-collection";
+      }
+    </script>
+
+    <!-- hamburger -->
+
+    <script>
+      const hamburger = document.querySelector(".Hamburger");
+      const mobileMenu = document.querySelector(".Mobile-menu");
+
+      hamburger.addEventListener("click", () => {
+        mobileMenu.classList.toggle("show");
+      });
+    </script>
+
+    <!-- back-to-top js -->
+    <script>
+      const backToTop = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTop.style.display = "block";
+        } else {
+          backToTop.style.display = "none";
+        }
+      });
+
+      backToTop.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+
+    <!-- form validation -->
+    <script>
+      const sendBtn = document.querySelector(".formBtn");
+      sendBtn.addEventListener("click", function () {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const msg = document.getElementById("message").value;
+        const mailformat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!name || !email || !phone || !msg) {
+          alert("Please fill out all the fields!");
+        } else if (name == "") {
+          alert("Name is required!");
+        } else if (!email.match(mailformat)) {
+          alert("Please enter a valid email address!");
+        } else if (phone.length < 10) {
+          alert("Phone number must be at least 10 digits!");
+        } else if (!name || !email || !phone || !msg) {
+          alert("Please fill out all the fields!");
+        } else {
+          alert("Thanks! Your message has been sent.");
+        }
+      });
+    </script>
+
+    <!-- popup -->
+    <script>
+      const overlay = document.querySelector(".Popup-overlay");
+      const loginPopup = document.querySelector(".Login-popup");
+      const cartPopup = document.querySelector(".Cart-popup");
+      const wishlistPopup = document.querySelector(".Wishlist-popup");
+      const closeBtns = document.querySelectorAll(".Popup-close");
+
+      // icons
+      const cartIcon = document.querySelector(".Icon i.bi-bag-check");
+      const loginIcon = document.querySelector(".Icon i.bi-person");
+      const heartIcon = document.querySelector(".Icon i.bi-suit-heart");
+
+      function showPopup(popup) {
+        overlay.style.display = "block";
+        setTimeout(() => (overlay.style.opacity = 1), 10);
+        popup.classList.add("active");
+      }
+
+      function hidePopups() {
+        overlay.style.opacity = 0;
+        setTimeout(() => {
+          overlay.style.display = "none";
+          document
+            .querySelectorAll(".Popup-box")
+            .forEach((p) => p.classList.remove("active"));
+        }, 300);
+      }
+
+      // El
+      cartIcon?.addEventListener("click", () => showPopup(cartPopup));
+      loginIcon?.addEventListener("click", () => showPopup(loginPopup));
+      heartIcon?.addEventListener("click", () => showPopup(wishlistPopup));
+      overlay.addEventListener("click", hidePopups);
+      closeBtns.forEach((btn) => btn.addEventListener("click", hidePopups));
+
+      function scrollToSec(id) {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+        const overlay = document.getElementById("overlay");
+        if (overlay) overlay.style.display = "none";
+      }
+    </script>
+
+    <!-- slider -->
+    <script>
+      const hero = document.getElementById("hero");
+      const heroTitle = document.getElementById("heroTitle");
+      const heroSubtitle = document.getElementById("heroSubtitle");
+      const heroBtn = document.getElementById("heroBtn");
+      const thumbnails = document.querySelectorAll(".thumb");
+
+      const heroData = [
+        {
+          img: "ASSETS/IMAGES/sec 1-21.jpg",
+          title: "Unleash The Power Of Play",
+          subtitle:
+            "Dive into a world where boundaries blur,reality fades, and the game begins - <br> Welcome to Pandora Box, where every gamer finds their destiny.",
+          btn: "EXPLORE NOW",
+        },
+        {
+          img: "ASSETS/IMAGES/sec 1-15.jpg",
+          title: "Next Gen. No Limits.",
+          subtitle:
+            "From legendary PlayStation consoles to next-gen accessories, every product<br>is designed to fuel your passion and elevate your experience beyond imagination.",
+          btn: "BROWSE COLLECTION",
+        },
+        {
+          img: "ASSETS/IMAGES/sec 1-5.jpg",
+          title: "Level Up Your Experience",
+          subtitle:
+            "Pandora Box isn't just a store — it's the beginning of your next epic.<br>Explore a curated universe of games, gear, and glory crafted for the heroes of today.",
+          btn: "SHOP NOW",
+        },
+      ];
+
+      function changeHero(index) {
+        hero.style.background = `url('${heroData[index].img}')`;
+
+        heroTitle.style.opacity = 0;
+        heroSubtitle.style.opacity = 0;
+        heroBtn.style.opacity = 0;
+
+        setTimeout(() => {
+          heroTitle.innerHTML = heroData[index].title;
+          heroSubtitle.innerHTML = heroData[index].subtitle;
+          heroBtn.innerHTML = heroData[index].btn;
+
+          heroTitle.style.opacity = 1;
+          heroSubtitle.style.opacity = 1;
+          heroBtn.style.opacity = 1;
+        }, 200);
+
+        thumbnails.forEach((thumb) => thumb.classList.remove("active"));
+        thumbnails[index].classList.add("active");
+      }
+
+      let currentIndex = 0;
+      let autoSlideInterval;
+
+      function autoSlide() {
+        currentIndex = (currentIndex + 1) % heroData.length;
+        changeHero(currentIndex);
+      }
+
+      function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(autoSlide, 3000);
+      }
+
+      resetAutoSlide();
+
+      window.addEventListener("DOMContentLoaded", () => {
+        changeHero(currentIndex);
+      });
+    </script>
+
+    <!-- aos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.4.1.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>
