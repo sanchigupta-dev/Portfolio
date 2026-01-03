@@ -1509,6 +1509,85 @@
   cursor: pointer;
   font-size: 16px;
 }
+/* Contact Section */
+.contact-text {
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.contact-text p {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+/* Form Styling */
+.contact-form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Inputs & Textarea */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #fff;
+  background: transparent;
+  color: white;
+  outline: none;
+}
+
+.contact-form textarea {
+  resize: none;
+  height: 120px;
+}
+
+/* Non-submit buttons (white border, transparent) */
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.form-buttons .btn-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  border-radius: 6px;
+  cursor: default;
+  pointer-events: none; /* non-clickable */
+  font-size: 14px;
+}
+
+/* Submit Button */
+.btn-submit {
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f7941d;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #e6831c;
+}
 
     /* media query */
 
@@ -1796,6 +1875,12 @@
       #contact {
     padding: 40px 16px;
       }
+      .contact-text h1 {
+    font-size: 2rem;
+  }
+  .form-buttons {
+    flex-direction: column;
+  }
     }
   </style>
   <body>
@@ -2762,7 +2847,7 @@
         <button type="submit" class="btn3">Send Message &#8599;</button>
       </div> -->
       <!-- CONTACT SECTION -->
-<section id="contact">
+<!-- <section id="contact">
   <div class="text-1 t-1">
     <h1>Let's Work Together!</h1>
     <p>
@@ -2780,7 +2865,7 @@
       required
     /> -->
 
-    <input
+    <!-- <input
       type="text"
       name="name"
       placeholder="Name"
@@ -2801,6 +2886,32 @@
     ></textarea>
 
     <button type="submit" class="btn3">Send Message ↗</button>
+  </form>
+</section> -->
+
+      <!-- CONTACT SECTION -->
+<section id="contact" style="padding: 50px 20px; background-color:#111; color:white;">
+  <div class="contact-text">
+    <h1>Let's Work Together!</h1>
+    <p>
+      Have a project in mind? I'd love to help you bring it to life with
+      creativity and precision.
+    </p>
+  </div>
+
+  <form id="contact-form" class="contact-form" action="https://formspree.io/f/xvzgwgla" method="POST">
+    
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <textarea name="message" placeholder="Message" required></textarea>
+
+    <div class="form-buttons">
+      <button type="button" class="btn-input">Name</button>
+      <button type="button" class="btn-input">Email</button>
+      <button type="button" class="btn-input">Message</button>
+    </div>
+
+    <button type="submit" class="btn-submit">Send Message ↗</button>
   </form>
 </section>
       <!-- sec-6 ends here -->
@@ -3101,7 +3212,7 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
 });
     </script> -->
 
-    <script>
+   <!--  <script>
   (function () {
     emailjs.init("QxX4Z9xt0IaXtSRscegjO"); // Public Key
   })();
@@ -3148,9 +3259,33 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
         );
     });
   });
-    </script>
+    </script> -->
 
-    
+    <script>
+document.getElementById("contact-form").addEventListener("submit", function(e){
+  e.preventDefault(); // prevent reload
+  const form = this;
+  const data = new FormData(form);
+
+  fetch(form.action, {
+    method: "POST",
+    body: data,
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    if(response.ok){
+      alert("Thank you! Your message has been sent successfully 😊");
+      form.reset();
+    } else {
+      alert("Oops! Something went wrong. Please try again.");
+    }
+  }).catch(error => {
+    alert("Oops! Something went wrong. Please try again.");
+    console.error(error);
+  });
+});
+    </script>
 
     <!-- aos -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
