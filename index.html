@@ -1505,10 +1505,16 @@
 .btn3 {
   padding: 14px;
   border-radius: 8px;
-  border: none;
+  border: white;
   cursor: pointer;
   font-size: 16px;
+  background-color: none;
+  color: white;
 }
+  .btn3 hover {
+    background-colour: white;
+    color: black;}
+    
 /* Contact Section */
 .contact-text {
   max-width: 700px;
@@ -2901,17 +2907,17 @@
 
   <form id="contact-form" class="contact-form" action="https://formspree.io/f/xvzgwgla" method="POST">
     
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="message" placeholder="Message" required></textarea>
+    <input type="text" name="name" placeholder="Name*" required>
+    <input type="email" name="email" placeholder="Email*" required>
+    <textarea name="message" placeholder="Message*" required></textarea>
 
-    <div class="form-buttons">
+   <!-- <div class="form-buttons">
       <button type="button" class="btn-input">Name</button>
       <button type="button" class="btn-input">Email</button>
       <button type="button" class="btn-input">Message</button>
-    </div>
+    </div>-->
 
-    <button type="submit" class="btn-submit">Send Message ↗</button>
+    <button type="submit" class="btn3">Send Message ↗</button>
   </form>
 </section>
       <!-- sec-6 ends here -->
