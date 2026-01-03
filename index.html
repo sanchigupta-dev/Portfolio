@@ -2773,12 +2773,12 @@
 
   <form id="contact-form" class="contact-form" novalidate>
 
-    <input
+    <!-- <input
       type="text"
       name="title"
       placeholder="Subject / Title"
       required
-    />
+    /> -->
 
     <input
       type="text"
@@ -3057,7 +3057,7 @@
       });
     </script>
 
-    <script>
+    <!-- <script>
       (function () {
   emailjs.init("QxX4Z9xt0IaXtSRscegjO"); // Public Key
 })();
@@ -3099,6 +3099,55 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
       }
     );
 });
+    </script> -->
+
+    <script>
+  (function () {
+    emailjs.init("QxX4Z9xt0IaXtSRscegjO"); // Public Key
+  })();
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = this.name.value.trim();
+      const email = this.email.value.trim();
+      const message = this.message.value.trim();
+
+      // Validation
+      if (!name || !email || !message) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      if (!/^\S+@\S+\.\S+$/.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      // Send Email
+      emailjs
+        .sendForm(
+          "service_gt7mikl",
+          "template_c7zxbjk",
+          this
+        )
+        .then(
+          () => {
+            alert("Thank you! Your message has been sent successfully 😊");
+            this.reset();
+          },
+          (error) => {
+            alert("Something went wrong. Please try again.");
+            console.error(error);
+          }
+        );
+    });
+  });
     </script>
 
     
